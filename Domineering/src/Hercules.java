@@ -1,14 +1,27 @@
 package domineering;
 
-import game.GameMove;
-import game.GamePlayer;
-import game.GameState;
+import game.*;
 
 public class Hercules extends GamePlayer{
-
 	private int rows = 0;
 	private int cols = 0;
 	protected DomineeringMove [] openingMoves;
+	protected ScoredDomineeringMove [] mvStack;
+	
+	protected class ScoredDomineeringMove extends DomineeringMove{
+		public double score;
+		public ScoredDomineeringMove(int r1, int c1, int r2, int c2, int score){
+			super(r1, c1, r2, c2);
+			this.score = score;
+		}
+		public void set(int r1, int c1, int r2, int c2, int score){
+			this.score = score;
+			this.row1 = r1;
+			this.row2 = r2;
+			this.col1 = c1;
+			this.col2 = c2;
+		}
+	}
 	
 	public Hercules(String n) 
 	{
@@ -30,8 +43,7 @@ public class Hercules extends GamePlayer{
 		 *  Home is horizontal
 		 *	Away is Vertical
 		 */
-		
-		return null;
+		return mvStack[0];
 		//End of opening moves.
 		
 	}
